@@ -1,0 +1,30 @@
+version: 2
+jobs:
+   test:
+     docker:
+       - image: circleci/node:8-browsers
+     steps:
+       - checkout
+       - run: yarn install
+       - run: yarn global add @google/clasp
+       - run:
+           name: Run tests
+           command: |
+             export CLIENT_ID=$TEST_CLIENT_ID
+             export PROJECT_ID=$TEST_PROJECT_ID
+             export CLIENT_SECRET=$TEST_CLIENT_SECRET
+             export CLIENT_ACCESS_TOKEN=$TEST_CLIENT_ACCESS_TOKEN
+             export CLIENT_REFRESH_TOKEN=$TEST_CLIENT_REFRESH_TOKEN
+             export CLIENT_EXPIRY_DATE=$TEST_CLIENT_EXPIRY_DATE
+             export SCRIPT_ID=$TEST_SCRIPT_ID
+
+             PATH=$PATH:`yarn global bin`
+             ./generate_credentials_files.js
+             clasp push
+             ./test.js
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test

@@ -1,0 +1,12 @@
+{
+  "name": "HelloAddon",
+  "version": "1.0.0",
+  "description": "Hello Addon",
+  "main": "index.js",
+  "repository": "git@github.com:Effilab/HelloAddon.git",
+  "author": "Marhic Jerome <marhic.jerome@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "googleapis": "^31.0.2"
+  }
+}

@@ -3,7 +3,12 @@ function gastTestRunner() {
      eval(UrlFetchApp.fetch('https://raw.githubusercontent.com/zixia/gast/master/src/gas-tap-lib.js').getContentText())
    } // Class GasTap is ready for use now!
 
-   var test = new GasTap()
+   var log = "";
+   var loggerFunc = function (msg) { log += msg + "\n" }
+
+   var test = new GasTap({
+     logger: loggerFunc
+   })
 
    var url = 'https://docs.google.com/spreadsheets/d/1Qaa7rM6czEEPFWiDorbu9P2BVnAauudb9b1rRW0y4Ac/edit#gid=0'
    var ss = SpreadsheetApp.openByUrl(url)
@@ -12,6 +17,8 @@ function gastTestRunner() {
    testSayHello(test);
 
    test.finish();
+
+   return { failures: test.totalFailed(), log: log }
 }
 
 function testSayHello(test) {
