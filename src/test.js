@@ -23,8 +23,9 @@ function gastTestRunner() {
 
 function testSayHello(test) {
   test("sayHello writes Hello in the top-left cell", function(t) {
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    sayHello();
 
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
     var cell = ss.getActiveSheet().getRange("A1");
     var value = cell.getValue();
     t.equal(value, "Hello", "it writes Hello");

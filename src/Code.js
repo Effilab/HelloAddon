@@ -27,6 +27,6 @@ function setSheetData(sheet, rows) {
 
 function sayHello() {
   var sheet = getActiveSheet();
-  var rows = [["Yellow"]];
+  var rows = [["Hello"]];
   setSheetData(sheet, rows);
 }
