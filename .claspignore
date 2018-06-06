@@ -1,0 +1,4 @@
+**/**
+# Explicitely allows the following files:
+!appsscript.json
+!Code.js
