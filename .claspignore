@@ -1,4 +1,4 @@
 **/**
-# Explicitely allows the following files:
+# Only push the files from the src directory :
 !appsscript.json
-!Code.js
+!src/*
