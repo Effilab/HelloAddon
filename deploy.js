@@ -197,7 +197,7 @@ function upload_archive(token) {
 // Publish the application on the chrome web store
 // @param [String] A valid oauth token with chromewebstore authorization
 function publish(token) {
-  return fetch(`https://www.googleapis.com/chromewebstore/v1.1/items/${APP_ID}/publish`, {
+  return fetch(`https://www.googleapis.com/chromewebstore/v1.1/items/${process.env.APP_ID}/publish`, {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${token}`,

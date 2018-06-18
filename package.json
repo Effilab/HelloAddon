@@ -7,6 +7,9 @@
   "author": "Marhic Jerome <marhic.jerome@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "googleapis": "^31.0.2"
+    "archiver": "^2.1.1",
+    "form-data": "^2.3.2",
+    "googleapis": "^31.0.2",
+    "node-fetch": "^2.1.2"
   }
 }
