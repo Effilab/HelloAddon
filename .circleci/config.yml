@@ -23,8 +23,37 @@ jobs:
              clasp push
              ./test.js
 
+   deploy:
+     docker:
+       - image: circleci/node:8-browsers
+     steps:
+       - checkout
+       - run: yarn install
+       - run: yarn global add @google/clasp
+       - run:
+           name: Deploy and Publish
+           command: |
+             export CLIENT_ID=$PRODUCTION_CLIENT_ID
+             export PROJECT_ID=$PRODUCTION_PROJECT_ID
+             export CLIENT_SECRET=$PRODUCTION_CLIENT_SECRET
+             export CLIENT_ACCESS_TOKEN=$PRODUCTION_CLIENT_ACCESS_TOKEN
+             export CLIENT_REFRESH_TOKEN=$PRODUCTION_CLIENT_REFRESH_TOKEN
+             export CLIENT_EXPIRY_DATE=$PRODUCTION_CLIENT_EXPIRY_DATE
+             export SCRIPT_ID=$PRODUCTION_SCRIPT_ID
+
+             PATH=$PATH:`yarn global bin`
+             ./generate_credentials_files.js
+             clasp push
+             ./deploy.js
+
 workflows:
   version: 2
   build:
     jobs:
       - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: production
